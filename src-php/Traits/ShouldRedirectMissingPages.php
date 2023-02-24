@@ -10,7 +10,7 @@ trait ShouldRedirectMissingPages
      * @param  mixed  $value
      * @return \Illuminate\Database\Eloquent\Model|null
      */
-    public function resolveRouteBinding($value)
+    public function resolveRouteBinding($value, $field = null)
     {
         if ($resolved = $this->where($this->getRouteKeyName(), $value)->first()) {
             return $resolved;
