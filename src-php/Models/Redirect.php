@@ -14,8 +14,10 @@ class Redirect extends Model
 
     public static function toRedirector()
     {
-        return self::all()->mapWithKeys(function ($redirect) {
-            return [$redirect->from => $redirect->to];
+        $redirects = self::all()->mapWithKeys(function ($redirect) {
+            return [$redirect->from => [$redirect->to, $redirect->status_code]];
         })->toArray();
+
+        return $redirects;
     }
 }

@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\Select;
 use Dewsign\NovaToolRedirects\Nova\ExportRedirects;
 use Dewsign\NovaToolRedirects\Nova\ImportRedirects;
 
@@ -57,6 +58,10 @@ class Redirect extends Resource
         return [
             Text::make('From')->rules('required', 'max:254')->sortable(),
             Text::make('To')->rules('required', 'max:254')->sortable(),
+            Select::make('Status Code')->options([
+                301 => '301',
+                302 => '302'
+            ]),
             Number::make('Hits')->exceptOnForms()->sortable(),
             Date::make('Last Hit')->exceptOnForms()->sortable()->resolveUsing(function ($date) {
                 return $date->diffForHumans();
