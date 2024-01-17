@@ -64,7 +64,7 @@ class Redirect extends Resource
             ]),
             Number::make('Hits')->exceptOnForms()->sortable(),
             Date::make('Last Hit')->exceptOnForms()->sortable()->resolveUsing(function ($date) {
-                return $date->diffForHumans();
+                return $date?->diffForHumans();
             }),
             DateTime::make('Created At')->onlyOnDetail(),
             DateTime::make('Updated At')->onlyOnDetail(),
